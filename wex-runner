@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+set -euo pipefail
+
+# adding an if statement inside the main body made this fail for some reason...
+SHIFT=""
+if [[ -v "1" ]] && [ $1 == "--in-terminal" ]; then
+    SHIFT="-M shift"
+fi
+
+set OLD_CLIP=${wl-paste}
+if wex; then
+    wtype -d 10 -M ctrl $SHIFT -k v
+fi
+echo OLD_CLIP | wl-copy
